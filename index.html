@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Mohamed Hassan — Portfolio</title>
+    <meta name="description" content="Mohamed Hassan — Data Analyst & Backend Developer" />
+    <style>
+        :root{
+            --bg:#0f1724;
+            --card:#0b1220;
+            --muted:#9aa6b2;
+            --accent:#06b6d4;
+            --glass: rgba(255,255,255,0.03);
+            --radius:12px;
+            --maxw:1100px;
+            --ff:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+        }
+        *{box-sizing:border-box}
+        html,body{height:100%}
+        body{
+            margin:0;
+            font-family:var(--ff);
+            background:
+                radial-gradient(1000px 400px at 10% 10%, rgba(6,182,212,0.06), transparent 8%),
+                linear-gradient(180deg,#071127 0%, var(--bg) 60%);
+            color:#e6eef6;
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
+            line-height:1.45;
+            padding:32px;
+            display:flex;
+            justify-content:center;
+        }
+        .wrap{
+            width:100%;
+            max-width:var(--maxw);
+        }
+
+        header{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            gap:20px;
+            margin-bottom:28px;
+        }
+        .logo{
+            display:flex;
+            gap:12px;
+            align-items:center;
+        }
+        .avatar{
+            width:56px;
+            height:56px;
+            border-radius:12px;
+            background:linear-gradient(135deg,var(--accent),#7c5cff);
+            display:grid;
+            place-items:center;
+            font-weight:700;
+            color:#042029;
+            font-size:20px;
+            box-shadow:0 6px 18px rgba(6,182,212,0.08);
+        }
+        h1{margin:0;font-size:20px}
+        .subtitle{color:var(--muted);font-size:13px;margin-top:4px}
+
+        nav a{
+            color:var(--muted);
+            text-decoration:none;
+            margin-left:18px;
+            font-size:14px;
+        }
+        nav a:hover{color:var(--accent)}
+
+        main{
+            display:grid;
+            grid-template-columns: 320px 1fr;
+            gap:28px;
+            align-items:start;
+        }
+
+        /* Left column */
+        .card{
+            background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            border-radius:var(--radius);
+            padding:20px;
+            box-shadow:0 6px 30px rgba(2,6,23,0.6);
+            border:1px solid rgba(255,255,255,0.03);
+        }
+        .profile-bio{font-size:14px;color:var(--muted);margin-top:10px}
+        .info-list{list-style:none;padding:0;margin:14px 0 0 0;display:grid;gap:10px}
+        .info-list li{display:flex;justify-content:space-between;align-items:center;font-size:14px}
+        .skill-pill{display:inline-block;background:var(--glass);padding:8px 10px;border-radius:999px;color:var(--muted);font-size:13px;margin:6px 6px 0 0}
+
+        /* Right column */
+        .hero{
+            display:flex;
+            align-items:flex-start;
+            justify-content:space-between;
+            gap:20px;
+            margin-bottom:18px;
+        }
+        .hero-left h2{margin:0 0 6px 0;font-size:26px}
+        .hero-left p{margin:0;color:var(--muted)}
+        .actions{display:flex;gap:12px;margin-top:12px}
+        .btn{
+            background:linear-gradient(90deg,var(--accent),#7c5cff);
+            color:#022a2f;
+            padding:10px 14px;border-radius:10px;border:none;font-weight:600;cursor:pointer;
+            text-decoration:none;
+            box-shadow:0 8px 24px rgba(7,128,138,0.12);
+            font-size:14px;
+        }
+        .btn.secondary{
+            background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);
+            box-shadow:none;
+        }
+
+        .section-title{font-size:18px;margin:8px 0 14px 0}
+        .projects{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+        .project{
+            background:var(--card);
+            padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.02);
+            transition:transform .16s ease, box-shadow .16s;
+        }
+        .project:hover{transform:translateY(-6px);box-shadow:0 14px 40px rgba(2,6,23,0.6)}
+        .project h3{margin:0 0 8px 0;font-size:15px}
+        .project p{margin:0;color:var(--muted);font-size:13px}
+
+        .skills-grid{display:flex;flex-wrap:wrap;gap:8px}
+
+        footer{
+            margin-top:30px;color:var(--muted);font-size:13px;text-align:center;
+        }
+
+        /* Responsive */
+        @media (max-width:880px){
+            main{grid-template-columns:1fr; padding-bottom:20px}
+            .avatar{width:48px;height:48px}
+            header{flex-direction:column;align-items:flex-start;gap:12px}
+            .hero{flex-direction:column}
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <div class="logo">
+                <div class="avatar">MH</div>
+                <div>
+                    <h1>Mohamed Hassan</h1>
+                    <div class="subtitle">Data Analyst • Backend Developer</div>
+                </div>
+            </div>
+            <nav>
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#skills">Skills</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </header>
+
+        <main>
+            <aside>
+                <div class="card">
+                    <strong>About</strong>
+                    <div class="profile-bio">
+                        I'm Mohamed Hassan — I analyze data to find actionable insights and build robust backend systems to power applications. I enjoy Python, SQL, ETL, APIs, and scalable services.
+                    </div>
+
+                    <ul class="info-list" style="margin-top:14px">
+                        <li><span>Location</span><span>Cairo, Egypt</span></li>
+                        <li><span>Experience</span><span>3+ years</span></li>
+                        <li><span>Email</span><span><a href="mailto:hello@example.com" style="color:var(--muted);text-decoration:none">hello@example.com</a></span></li>
+                        <li><span>Open to</span><span style="color:var(--accent)">Freelance / Full-time</span></li>
+                    </ul>
+
+                    <div style="margin-top:14px">
+                        <div class="section-title">Tools & Tech</div>
+                        <div class="skills-grid">
+                            <span class="skill-pill">Python</span>
+                            <span class="skill-pill">SQL</span>
+                            <span class="skill-pill">Pandas</span>
+                            <span class="skill-pill">Flask / FastAPI</span>
+                            <span class="skill-pill">Postgres</span>
+                            <span class="skill-pill">Docker</span>
+                            <span class="skill-pill">AWS</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <section>
+                <div class="hero card" style="align-items:flex-start">
+                    <div class="hero-left">
+                        <h2>Hi, I'm Mohamed — I turn data into reliable backends</h2>
+                        <p>Combining data analysis with backend development to build data-driven services and pipelines.</p>
+                        <div class="actions">
+                            <a class="btn" href="#contact">Get in touch</a>
+                            <a class="btn secondary" href="#projects">View projects</a>
+                        </div>
+                    </div>
+                    <div style="min-width:120px;text-align:right;color:var(--muted)">
+                        <div style="font-weight:700;font-size:22px">Data • APIs</div>
+                        <div style="margin-top:8px">ETL • Automation • Monitoring</div>
+                    </div>
+                </div>
+
+                <div id="projects" class="card" style="margin-top:18px">
+                    <div class="section-title">Selected Projects</div>
+                    <div class="projects">
+                        <article class="project">
+                            <h3>Sales Insights Dashboard</h3>
+                            <p>ETL pipelines ingesting sales data, aggregation, and an interactive dashboard for business KPIs.</p>
+                        </article>
+
+                        <article class="project">
+                            <h3>Order Processing API</h3>
+                            <p>Built REST API with FastAPI, PostgreSQL, and background workers for order queueing and retries.</p>
+                        </article>
+
+                        <article class="project">
+                            <h3>Data Quality Framework</h3>
+                            <p>Automated checks and alerting for data pipelines to ensure reliable analytics and ML features.</p>
+                        </article>
+
+                        <article class="project">
+                            <h3>Customer Segmentation</h3>
+                            <p>Clustering pipeline using feature engineering and scoring to drive marketing personalization.</p>
+                        </article>
+                    </div>
+                </div>
+
+                <div id="skills" class="card" style="margin-top:18px">
+                    <div class="section-title">Skills & Competencies</div>
+                    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px">
+                        <div>
+                            <strong>Data</strong>
+                            <ul style="color:var(--muted);padding-left:18px;margin-top:8px">
+                                <li>Exploratory Analysis & Visualization</li>
+                                <li>ETL & Data Modeling</li>
+                                <li>SQL, OLAP</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <strong>Backend</strong>
+                            <ul style="color:var(--muted);padding-left:18px;margin-top:8px">
+                                <li>APIs (REST)</li>
+                                <li>Distributed Jobs & Queues</li>
+                                <li>Containerization & Deployment</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="contact" class="card" style="margin-top:18px">
+                    <div class="section-title">Contact</div>
+                    <p style="color:var(--muted);margin-top:0">Interested in working together? Send a short message.</p>
+                    <form action="mailto:hello@example.com" method="post" enctype="text/plain" style="margin-top:12px;display:grid;gap:8px">
+                        <input name="name" placeholder="Your name" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit" />
+                        <input name="email" placeholder="Email" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit" />
+                        <textarea name="message" rows="4" placeholder="A short message" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit"></textarea>
+                        <div style="display:flex;gap:8px">
+                            <button class="btn" type="submit">Send</button>
+                            <a class="btn secondary" href="mailto:hello@example.com">Email me</a>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            © <span id="year"></span> Mohamed Hassan — Data Analyst & Backend Developer
+        </footer>
+    </div>
+
+    <script>
+        // small runtime touches
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html></form></ul></div>
