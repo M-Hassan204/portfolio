@@ -7,6 +7,7 @@
     <meta name="description" content="Mohamed Hassan — Data Analyst & Backend Developer" />
     <!-- replaced inline CSS with external stylesheet -->
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="animations.css" />
 </head>
 <body>
     <div class="wrap">
@@ -37,9 +38,9 @@
                     </div>
 
                     <ul class="info-list" style="margin-top:14px">
-                        <li><span>Location</span><span>Cairo, Egypt</span></li>
-                        <li><span>Experience</span><span>3+ years</span></li>
-                        <li><span>Email</span><span><a href="mailto:hello@example.com" style="color:var(--muted);text-decoration:none">hello@example.com</a></span></li>
+                        <li><span>Location</span><span>Minia, Egypt</span></li>
+                        <li><span>Experience</span><span>Frishman</span></li>
+                        <li><span>Email</span><span><a href="mailto:m.hassan.dev@icloud.com" style="color:var(--muted);text-decoration:none">m.hassan.dev@icloud.com</a></span></li>
                         <li><span>Open to</span><span style="color:var(--accent)">Freelance / Full-time</span></li>
                     </ul>
 
@@ -143,8 +144,44 @@
     </div>
 
     <script>
-        // small runtime touches
+        // small runtime touches + reveal animations
         document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
+
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            // don't run animations if user prefers reduced motion
+        } else {
+            // nav entrance stagger
+            document.querySelectorAll('nav a').forEach((el, i) => {
+                el.style.animationDelay = (i * 80) + 'ms';
+                el.classList.add('nav-animate');
+            });
+
+            // reveal-on-scroll for sections/cards
+            const reveals = document.querySelectorAll('main .card, main article, aside .card, .hero-left, #contact form');
+            const io = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('reveal');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12 });
+            reveals.forEach((el, i) => {
+                el.style.transitionDelay = (i * 60) + 'ms';
+                io.observe(el);
+            });
+
+            // slight hover tilt for project cards
+            document.querySelectorAll('.project').forEach(p => {
+                p.addEventListener('mousemove', (e) => {
+                    const r = p.getBoundingClientRect();
+                    const x = (e.clientX - r.left - r.width/2) / r.width;
+                    const y = (e.clientY - r.top - r.height/2) / r.height;
+                    p.style.transform = `translateZ(0) rotateX(${ -y * 4 }deg) rotateY(${ x * 6 }deg)`;
+                });
+                p.addEventListener('mouseleave', () => p.style.transform = '');
+            });
+        }
+     </script>
 </body>
 </html>
