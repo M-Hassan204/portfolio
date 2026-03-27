@@ -65,7 +65,7 @@
                         <h2>Hi, I'm Mohamed — I turn data into reliable backends</h2>
                         <p>Combining data analysis with backend development to build data-driven services and pipelines.</p>
                         <div class="actions">
-                            <a class="btn" href="#contact">Get in touch</a>
+                            <a class="btn" id="get-in-touch" href="#contact">Get in touch</a>
                             <a class="btn secondary" href="#projects">View projects</a>
                         </div>
                     </div>
@@ -125,13 +125,13 @@
                 <div id="contact" class="card" style="margin-top:18px">
                     <div class="section-title">Contact</div>
                     <p style="color:var(--muted);margin-top:0">Interested in working together? Send a short message.</p>
-                    <form action="mailto:hello@example.com" method="post" enctype="text/plain" style="margin-top:12px;display:grid;gap:8px">
+                    <form action="mailto:m.hassan.dev@icloud.com" method="post" enctype="text/plain" style="margin-top:12px;display:grid;gap:8px">
                         <input name="name" placeholder="Your name" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit" />
                         <input name="email" placeholder="Email" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit" />
                         <textarea name="message" rows="4" placeholder="A short message" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit"></textarea>
                         <div style="display:flex;gap:8px">
                             <button class="btn" type="submit">Send</button>
-                            <a class="btn secondary" href="mailto:hello@example.com">Email me</a>
+                            <a class="btn secondary" href="mailto:m.hassan.dev@icloud.com">Email me</a>
                         </div>
                     </form>
                 </div>
@@ -143,45 +143,6 @@
         </footer>
     </div>
 
-    <script>
-        // small runtime touches + reveal animations
-        document.getElementById('year').textContent = new Date().getFullYear();
-
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            // don't run animations if user prefers reduced motion
-        } else {
-            // nav entrance stagger
-            document.querySelectorAll('nav a').forEach((el, i) => {
-                el.style.animationDelay = (i * 80) + 'ms';
-                el.classList.add('nav-animate');
-            });
-
-            // reveal-on-scroll for sections/cards
-            const reveals = document.querySelectorAll('main .card, main article, aside .card, .hero-left, #contact form');
-            const io = new IntersectionObserver((entries, obs) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('reveal');
-                        obs.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.12 });
-            reveals.forEach((el, i) => {
-                el.style.transitionDelay = (i * 60) + 'ms';
-                io.observe(el);
-            });
-
-            // slight hover tilt for project cards
-            document.querySelectorAll('.project').forEach(p => {
-                p.addEventListener('mousemove', (e) => {
-                    const r = p.getBoundingClientRect();
-                    const x = (e.clientX - r.left - r.width/2) / r.width;
-                    const y = (e.clientY - r.top - r.height/2) / r.height;
-                    p.style.transform = `translateZ(0) rotateX(${ -y * 4 }deg) rotateY(${ x * 6 }deg)`;
-                });
-                p.addEventListener('mouseleave', () => p.style.transform = '');
-            });
-        }
-     </script>
+    <script src="scripts.js"></script>
 </body>
 </html>
