@@ -5,627 +5,15 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Mohamed Hassan — Portfolio</title>
   <meta name="description" content="Mohamed Hassan — Data Analyst & Backend Developer" />
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <style>
-    /* ── DESIGN TOKENS ─────────────────────────────── */
-    :root {
-      --bg:      #080c14;
-      --surface: #0d1420;
-      --border:  rgba(255,255,255,0.055);
-      --muted:   #6b7a8d;
-      --text:    #dde6f0;
-      --accent:  #00d4ff;
-      --accent2: #7b61ff;
-      --danger:  #ff4d6d;
-      --green:   #22d3a5;
-      --ff-head: 'Syne', sans-serif;
-      --ff-mono: 'DM Mono', monospace;
-      --r:       14px;
-      --max:     1120px;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: var(--ff-mono);
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-
-    /* ── GRID BG ─────────────────────────────────── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(var(--border) 1px, transparent 1px),
-        linear-gradient(90deg, var(--border) 1px, transparent 1px);
-      background-size: 60px 60px;
-      pointer-events: none;
-      z-index: 0;
-      mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%);
-    }
-
-    /* ── GLOW ORBS ──────────────────────────────── */
-    .orb {
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(120px);
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.18;
-      animation: drift 14s ease-in-out infinite alternate;
-    }
-    .orb-1 { width: 600px; height: 400px; top: -100px; left: -150px; background: var(--accent); }
-    .orb-2 { width: 500px; height: 400px; bottom: 0; right: -100px; background: var(--accent2); animation-delay: -6s; }
-    @keyframes drift { from { transform: translate(0, 0); } to { transform: translate(40px, 30px); } }
-
-    /* ── WRAP ────────────────────────────────────── */
-    .wrap {
-      position: relative;
-      z-index: 1;
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 32px 28px 60px;
-    }
-
-    /* ── HEADER ──────────────────────────────────── */
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 0 36px;
-      gap: 20px;
-    }
-
-    .logo-row {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .avatar-wrap {
-      position: relative;
-      width: 54px;
-      height: 54px;
-      flex-shrink: 0;
-    }
-    .avatar-wrap::before {
-      content: '';
-      position: absolute;
-      inset: -3px;
-      border-radius: 50%;
-      background: conic-gradient(var(--accent), var(--accent2), var(--accent));
-      animation: spin 4s linear infinite;
-      z-index: 0;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .avatar-wrap::after {
-      content: '';
-      position: absolute;
-      inset: 2px;
-      border-radius: 50%;
-      background: var(--bg);
-      z-index: 1;
-    }
-    .avatar {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .logo-text h1 {
-      font-family: var(--ff-head);
-      font-size: 17px;
-      font-weight: 700;
-      letter-spacing: -0.3px;
-      color: var(--text);
-    }
-    .logo-text .role {
-      font-size: 11px;
-      color: var(--muted);
-      margin-top: 2px;
-      letter-spacing: 0.06em;
-    }
-
-    /* STATUS DOT */
-    .status-badge {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      background: rgba(34, 211, 165, 0.08);
-      border: 1px solid rgba(34, 211, 165, 0.2);
-      padding: 5px 12px;
-      border-radius: 99px;
-      font-size: 11px;
-      color: var(--green);
-      letter-spacing: 0.04em;
-    }
-    .dot {
-      width: 7px; height: 7px;
-      border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 8px var(--green);
-      animation: pulse 2s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.75); }
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    nav a {
-      font-family: var(--ff-mono);
-      font-size: 12px;
-      color: var(--muted);
-      text-decoration: none;
-      padding: 6px 14px;
-      border-radius: 8px;
-      border: 1px solid transparent;
-      transition: color .2s, border-color .2s, background .2s;
-      letter-spacing: 0.03em;
-    }
-    nav a:hover {
-      color: var(--accent);
-      border-color: rgba(0, 212, 255, 0.2);
-      background: rgba(0, 212, 255, 0.04);
-    }
-
-    /* ── MAIN GRID ───────────────────────────────── */
-    main {
-      display: grid;
-      grid-template-columns: 300px 1fr;
-      gap: 24px;
-      align-items: start;
-    }
-
-    /* ── CARD ────────────────────────────────────── */
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--r);
-      padding: 22px;
-      position: relative;
-      overflow: hidden;
-    }
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(0,212,255,0.3), transparent);
-    }
-
-    /* ── SIDEBAR ─────────────────────────────────── */
-    .sidebar { display: flex; flex-direction: column; gap: 16px; }
-
-    .profile-card { text-align: center; padding-bottom: 24px; }
-    .profile-avatar-lg {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin: 0 auto 14px;
-      display: block;
-      border: 2px solid rgba(0,212,255,0.25);
-      box-shadow: 0 0 30px rgba(0,212,255,0.1);
-    }
-    .profile-name {
-      font-family: var(--ff-head);
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--text);
-    }
-    .profile-role {
-      font-size: 12px;
-      color: var(--muted);
-      margin-top: 5px;
-      letter-spacing: 0.05em;
-    }
-    .profile-bio {
-      font-size: 12.5px;
-      color: var(--muted);
-      line-height: 1.7;
-      margin-top: 14px;
-      text-align: left;
-    }
-
-    .divider {
-      height: 1px;
-      background: var(--border);
-      margin: 16px 0;
-    }
-
-    .info-list {
-      list-style: none;
-      display: grid;
-      gap: 11px;
-    }
-    .info-list li {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 12px;
-    }
-    .info-list .label { color: var(--muted); }
-    .info-list .value { color: var(--text); text-align: right; }
-    .info-list a { color: var(--text); text-decoration: none; }
-    .info-list a:hover { color: var(--accent); }
-    .available { color: var(--green) !important; }
-
-    .section-label {
-      font-family: var(--ff-head);
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 12px;
-    }
-
-    .tech-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-    }
-    .pill {
-      font-family: var(--ff-mono);
-      font-size: 11px;
-      padding: 5px 11px;
-      border-radius: 6px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.03);
-      color: var(--muted);
-      cursor: default;
-      transition: color .2s, border-color .2s, background .2s, transform .2s;
-    }
-    .pill:hover {
-      color: var(--accent);
-      border-color: rgba(0,212,255,0.3);
-      background: rgba(0,212,255,0.05);
-      transform: translateY(-2px);
-    }
-
-    /* LINKS CARD */
-    .links-list { display: flex; flex-direction: column; gap: 8px; }
-    .link-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 12px;
-      color: var(--muted);
-      text-decoration: none;
-      padding: 8px 10px;
-      border-radius: 8px;
-      border: 1px solid transparent;
-      transition: all .2s;
-    }
-    .link-item:hover {
-      color: var(--text);
-      border-color: var(--border);
-      background: rgba(255,255,255,0.03);
-    }
-    .link-item svg { flex-shrink: 0; }
-
-    /* ── MAIN CONTENT ────────────────────────────── */
-    .content { display: flex; flex-direction: column; gap: 18px; }
-
-    /* HERO */
-    .hero {
-      padding: 30px;
-      background: linear-gradient(135deg, rgba(0,212,255,0.04) 0%, rgba(123,97,255,0.04) 100%);
-    }
-    .hero-eyebrow {
-      font-family: var(--ff-mono);
-      font-size: 11px;
-      color: var(--accent);
-      letter-spacing: 0.1em;
-      margin-bottom: 14px;
-    }
-    .hero-eyebrow::before { content: '// '; opacity: 0.5; }
-    .hero h2 {
-      font-family: var(--ff-head);
-      font-size: clamp(22px, 3vw, 32px);
-      font-weight: 800;
-      line-height: 1.15;
-      color: var(--text);
-      letter-spacing: -0.5px;
-      margin-bottom: 14px;
-    }
-    .hero h2 em {
-      font-style: normal;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .hero p {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.75;
-      max-width: 520px;
-      margin-bottom: 24px;
-    }
-    .actions { display: flex; gap: 10px; flex-wrap: wrap; }
-
-    .btn {
-      font-family: var(--ff-mono);
-      font-size: 12px;
-      font-weight: 500;
-      padding: 10px 20px;
-      border-radius: 9px;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      transition: transform .18s, box-shadow .18s, background .18s;
-      letter-spacing: 0.02em;
-    }
-    .btn-primary {
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      color: #040c12;
-      font-weight: 600;
-      box-shadow: 0 4px 20px rgba(0,212,255,0.2);
-    }
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 28px rgba(0,212,255,0.35);
-    }
-    .btn-ghost {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--muted);
-    }
-    .btn-ghost:hover {
-      color: var(--text);
-      border-color: rgba(255,255,255,0.15);
-      transform: translateY(-3px);
-      background: rgba(255,255,255,0.03);
-    }
-
-    /* STAT CHIPS IN HERO */
-    .hero-stats {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 24px;
-      padding-top: 24px;
-      border-top: 1px solid var(--border);
-    }
-    .stat-chip {
-      font-size: 11px;
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .stat-chip strong {
-      color: var(--text);
-      font-family: var(--ff-head);
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    /* PROJECTS */
-    #projects .section-label { margin-bottom: 18px; }
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
-    .project-card {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 18px;
-      transition: border-color .2s, background .2s, transform .2s;
-      cursor: default;
-      position: relative;
-      overflow: hidden;
-    }
-    .project-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(0,212,255,0.04), transparent 60%);
-      opacity: 0;
-      transition: opacity .3s;
-    }
-    .project-card:hover {
-      border-color: rgba(0,212,255,0.25);
-      background: rgba(0,212,255,0.025);
-      transform: translateY(-4px);
-    }
-    .project-card:hover::after { opacity: 1; }
-
-    .project-icon {
-      font-size: 22px;
-      margin-bottom: 12px;
-      display: block;
-    }
-    .project-card h3 {
-      font-family: var(--ff-head);
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 8px;
-    }
-    .project-card p {
-      font-size: 12px;
-      color: var(--muted);
-      line-height: 1.65;
-    }
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
-      margin-top: 12px;
-    }
-    .tag {
-      font-size: 10px;
-      padding: 3px 8px;
-      border-radius: 4px;
-      background: rgba(0,212,255,0.08);
-      color: var(--accent);
-      border: 1px solid rgba(0,212,255,0.15);
-      letter-spacing: 0.04em;
-    }
-
-    /* SKILLS */
-    .skills-split {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-    .skill-group h4 {
-      font-family: var(--ff-head);
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 12px;
-    }
-    .skill-item {
-      margin-bottom: 12px;
-    }
-    .skill-row {
-      display: flex;
-      justify-content: space-between;
-      font-size: 11.5px;
-      color: var(--muted);
-      margin-bottom: 5px;
-    }
-    .skill-bar {
-      height: 3px;
-      background: rgba(255,255,255,0.05);
-      border-radius: 99px;
-      overflow: hidden;
-    }
-    .skill-fill {
-      height: 100%;
-      border-radius: 99px;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.8s cubic-bezier(.2,.9,.3,1);
-    }
-    .skill-fill.animated { transform: scaleX(1); }
-
-    /* CONTACT */
-    #contact p { font-size: 13px; color: var(--muted); margin-bottom: 18px; line-height: 1.7; }
-    .form-grid { display: grid; gap: 10px; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
-    .field label {
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    .field input,
-    .field textarea {
-      font-family: var(--ff-mono);
-      font-size: 12px;
-      padding: 11px 14px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.025);
-      color: var(--text);
-      outline: none;
-      transition: border-color .2s, background .2s;
-      resize: vertical;
-    }
-    .field input::placeholder,
-    .field textarea::placeholder { color: var(--muted); opacity: 0.6; }
-    .field input:focus,
-    .field textarea:focus {
-      border-color: rgba(0,212,255,0.35);
-      background: rgba(0,212,255,0.03);
-    }
-    .form-actions { display: flex; gap: 10px; margin-top: 4px; }
-
-    /* ── FOOTER ──────────────────────────────────── */
-    footer {
-      margin-top: 50px;
-      padding-top: 24px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 11px;
-      color: var(--muted);
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    footer span { opacity: 0.6; }
-    .footer-links { display: flex; gap: 16px; }
-    .footer-links a { color: var(--muted); text-decoration: none; }
-    .footer-links a:hover { color: var(--accent); }
-
-    /* ── ANIMATIONS ──────────────────────────────── */
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation: none !important;
-        transition: none !important;
-      }
-    }
-
-    .fade-in {
-      opacity: 0;
-      transform: translateY(14px);
-      transition: opacity .5s ease, transform .5s cubic-bezier(.2,.9,.3,1);
-    }
-    .fade-in.visible {
-      opacity: 1;
-      transform: none;
-    }
-
-    nav a {
-      opacity: 0;
-      transform: translateY(-5px);
-    }
-    nav a.nav-in {
-      animation: navSlide 350ms cubic-bezier(.2,.9,.3,1) forwards;
-    }
-    @keyframes navSlide {
-      to { opacity: 1; transform: none; }
-    }
-
-    /* ── RESPONSIVE ──────────────────────────────── */
-    @media (max-width: 900px) {
-      main { grid-template-columns: 1fr; }
-      .projects-grid { grid-template-columns: 1fr; }
-      .form-row { grid-template-columns: 1fr; }
-      .skills-split { grid-template-columns: 1fr; }
-      header { flex-wrap: wrap; gap: 14px; }
-      .hero { padding: 22px; }
-    }
-    @media (max-width: 600px) {
-      .wrap { padding: 20px 16px 50px; }
-      nav { display: none; }
-      .hero-stats { gap: 16px; }
-    }
-  </style>
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="animations.css" />
 </head>
 
 <body>
@@ -634,7 +22,6 @@
 
   <div class="wrap">
 
-    <!-- ── HEADER ── -->
     <header>
       <div class="logo-row">
         <div class="avatar-wrap">
@@ -645,12 +32,10 @@
           <div class="role">Data Analyst · Backend Developer</div>
         </div>
       </div>
-
       <div class="status-badge">
         <div class="dot"></div>
         Open to work
       </div>
-
       <nav id="nav">
         <a href="#about">About</a>
         <a href="#projects">Projects</a>
@@ -659,13 +44,10 @@
       </nav>
     </header>
 
-    <!-- ── MAIN ── -->
     <main>
 
-      <!-- SIDEBAR -->
       <aside class="sidebar">
 
-        <!-- Profile -->
         <div id="about" class="card profile-card fade-in">
           <img class="profile-avatar-lg" src="https://github.com/M-Hassan204.png" alt="Mohamed Hassan" />
           <div class="profile-name">Mohamed Hassan</div>
@@ -675,26 +57,13 @@
           </div>
           <div class="divider"></div>
           <ul class="info-list">
-            <li>
-              <span class="label">Location</span>
-              <span class="value">Minia, Egypt 🇪🇬</span>
-            </li>
-            <li>
-              <span class="label">Experience</span>
-              <span class="value">Freshman</span>
-            </li>
-            <li>
-              <span class="label">Email</span>
-              <span class="value"><a href="mailto:m.hassan.dev@icloud.com">m.hassan.dev@icloud.com</a></span>
-            </li>
-            <li>
-              <span class="label">Status</span>
-              <span class="value available">Freelance / Full-time</span>
-            </li>
+            <li><span class="label">Location</span><span class="value">Minia, Egypt 🇪🇬</span></li>
+            <li><span class="label">Experience</span><span class="value">Freshman</span></li>
+            <li><span class="label">Email</span><span class="value"><a href="mailto:m.hassan.dev@icloud.com">m.hassan.dev@icloud.com</a></span></li>
+            <li><span class="label">Status</span><span class="value available">Freelance / Full-time</span></li>
           </ul>
         </div>
 
-        <!-- Tech Stack -->
         <div class="card fade-in">
           <div class="section-label">Stack</div>
           <div class="tech-grid">
@@ -711,11 +80,10 @@
           </div>
         </div>
 
-        <!-- Links -->
         <div class="card fade-in">
           <div class="section-label">Links</div>
           <div class="links-list">
-            <a class="link-item" href="https://github.com/M-Hassan204" target="_blank" rel="noopener">
+            <a class="link-item" href="https://github.com/M-Hassan204" target="_blank" rel="noopener noreferrer">
               <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
               github.com/M-Hassan204
             </a>
@@ -728,26 +96,19 @@
 
       </aside>
 
-      <!-- MAIN CONTENT -->
       <div class="content">
 
-        <!-- HERO -->
         <div class="card hero fade-in">
           <div class="hero-eyebrow">hello world</div>
           <h2>I turn data into <em>reliable backends</em></h2>
-          <p>
-            Combining data analysis with backend engineering to build pipelines, APIs, and data-driven services that actually work in production.
-          </p>
+          <p>Combining data analysis with backend engineering to build pipelines, APIs, and data-driven services that actually work in production.</p>
           <div class="actions">
             <a class="btn btn-primary" id="get-in-touch" href="#contact">
               <svg width="13" height="13" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
               Get in touch
             </a>
-            <a class="btn btn-ghost" href="#projects">
-              View projects ↓
-            </a>
+            <a class="btn btn-ghost" href="#projects">View projects ↓</a>
           </div>
-
           <div class="hero-stats">
             <div class="stat-chip">
               <svg width="13" height="13" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M4 20h4V10H4v10zm6 0h4V4h-4v16zm6 0h4v-6h-4v6z"/></svg>
@@ -764,60 +125,44 @@
           </div>
         </div>
 
-        <!-- PROJECTS -->
         <div id="projects" class="card fade-in">
           <div class="section-label">Selected Projects</div>
           <div class="projects-grid">
-
             <article class="project-card">
               <span class="project-icon">📊</span>
               <h3>Sales Insights Dashboard</h3>
               <p>ETL pipelines ingesting raw sales data, aggregation layers, and an interactive KPI dashboard for business stakeholders.</p>
               <div class="project-tags">
-                <span class="tag">Python</span>
-                <span class="tag">Pandas</span>
-                <span class="tag">ETL</span>
-                <span class="tag">SQL</span>
+                <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">ETL</span><span class="tag">SQL</span>
               </div>
             </article>
-
             <article class="project-card">
               <span class="project-icon">⚡</span>
               <h3>Order Processing API</h3>
               <p>REST API built with FastAPI and PostgreSQL, featuring background workers, task queuing, and automated retry logic.</p>
               <div class="project-tags">
-                <span class="tag">FastAPI</span>
-                <span class="tag">PostgreSQL</span>
-                <span class="tag">Docker</span>
+                <span class="tag">FastAPI</span><span class="tag">PostgreSQL</span><span class="tag">Docker</span>
               </div>
             </article>
-
             <article class="project-card">
               <span class="project-icon">🛡️</span>
               <h3>Data Quality Framework</h3>
               <p>Automated validation checks and alerting for data pipelines, ensuring reliable analytics and ML feature consistency.</p>
               <div class="project-tags">
-                <span class="tag">Python</span>
-                <span class="tag">Monitoring</span>
-                <span class="tag">AWS</span>
+                <span class="tag">Python</span><span class="tag">Monitoring</span><span class="tag">AWS</span>
               </div>
             </article>
-
             <article class="project-card">
               <span class="project-icon">🎯</span>
               <h3>Customer Segmentation</h3>
               <p>Clustering pipeline with feature engineering and scoring to power marketing personalization at scale.</p>
               <div class="project-tags">
-                <span class="tag">ML</span>
-                <span class="tag">Pandas</span>
-                <span class="tag">SQL</span>
+                <span class="tag">ML</span><span class="tag">Pandas</span><span class="tag">SQL</span>
               </div>
             </article>
-
           </div>
         </div>
 
-        <!-- SKILLS -->
         <div id="skills" class="card fade-in">
           <div class="section-label">Skills & Competencies</div>
           <div class="skills-split">
@@ -840,7 +185,6 @@
                 <div class="skill-bar"><div class="skill-fill" style="--w:0.72"></div></div>
               </div>
             </div>
-
             <div class="skill-group">
               <h4>Backend Development</h4>
               <div class="skill-item">
@@ -863,7 +207,6 @@
           </div>
         </div>
 
-        <!-- CONTACT -->
         <div id="contact" class="card fade-in">
           <div class="section-label">Contact</div>
           <p>Interested in working together? Drop a message below or email directly — I usually reply within 24 hours.</p>
@@ -887,97 +230,24 @@
                 <svg width="13" height="13" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"/></svg>
                 Send message
               </button>
-              <a class="btn btn-ghost" href="mailto:m.hassan.dev@icloud.com" id="email-direct">
-                Email directly
-              </a>
+              <a class="btn btn-ghost" href="mailto:m.hassan.dev@icloud.com">Email directly</a>
             </div>
           </div>
         </div>
 
-      </div><!-- /content -->
-    </main><!-- /main -->
+      </div>
+    </main>
 
     <footer>
       <span>© <span id="year"></span> Mohamed Hassan — built with ❤️ &amp; ☕</span>
       <div class="footer-links">
-        <a href="https://github.com/M-Hassan204" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://github.com/M-Hassan204" target="_blank" rel="noopener noreferrer">GitHub</a>
         <a href="mailto:m.hassan.dev@icloud.com">Email</a>
       </div>
     </footer>
 
-  </div><!-- /wrap -->
+  </div>
 
-  <script>
-    const EMAIL = 'm.hassan.dev@icloud.com';
-
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Nav stagger entrance
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!prefersReduced) {
-      document.querySelectorAll('#nav a').forEach((a, i) => {
-        a.style.animationDelay = (60 + i * 80) + 'ms';
-        a.classList.add('nav-in');
-      });
-    } else {
-      document.querySelectorAll('#nav a').forEach(a => { a.style.opacity = 1; });
-    }
-
-    // Intersection observer — fade-in + skill bars
-    const io = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('visible');
-        // animate skill bars inside this card
-        entry.target.querySelectorAll('.skill-fill').forEach(bar => {
-          bar.style.transform = `scaleX(${bar.style.getPropertyValue('--w') || 1})`;
-          bar.classList.add('animated');
-        });
-        obs.unobserve(entry.target);
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.fade-in').forEach((el, i) => {
-      if (!prefersReduced) el.style.transitionDelay = (i * 70) + 'ms';
-      io.observe(el);
-    });
-
-    // Project card tilt
-    if (!prefersReduced) {
-      document.querySelectorAll('.project-card').forEach(card => {
-        card.addEventListener('mousemove', e => {
-          const r = card.getBoundingClientRect();
-          const x = (e.clientX - r.left - r.width / 2) / r.width;
-          const y = (e.clientY - r.top - r.height / 2) / r.height;
-          card.style.transform = `translateY(-4px) rotateX(${-y * 4}deg) rotateY(${x * 6}deg)`;
-        });
-        card.addEventListener('mouseleave', () => {
-          card.style.transform = '';
-        });
-      });
-    }
-
-    // "Get in touch" pre-filled mailto
-    document.getElementById('get-in-touch').addEventListener('click', e => {
-      e.preventDefault();
-      const sub = encodeURIComponent("Let's work together");
-      const body = encodeURIComponent("Hi Mohamed,\n\nI visited your portfolio and would like to discuss a potential collaboration.\n\nRegards,\n");
-      window.location.href = `mailto:${EMAIL}?subject=${sub}&body=${body}`;
-    });
-
-    // Send button → mailto with form values
-    document.getElementById('send-btn').addEventListener('click', () => {
-      const name = document.getElementById('fname').value.trim();
-      const email = document.getElementById('femail').value.trim();
-      const msg = document.getElementById('fmsg').value.trim();
-      if (!name && !msg) return;
-      const sub = encodeURIComponent("Portfolio inquiry");
-      const body = encodeURIComponent(
-        `Name: ${name || '(not provided)'}\nEmail: ${email || '(not provided)'}\n\n${msg}`
-      );
-      window.location.href = `mailto:${EMAIL}?subject=${sub}&body=${body}`;
-    });
-  </script>
+  <script src="scripts.js"></script>
 </body>
 </html>
